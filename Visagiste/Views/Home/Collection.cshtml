@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Photo>
+
+<section class="ftco-section ftco-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+            <div class="col-md-8 ftco-animate">
+                <p class="breadcrumbs"><span class="mr-2"><a asp-action="@nameof(Index)">Home</a></span><span>Collection</span></p>
+                <h1 class="bread">My Collection</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section-3">
+    <div class="photograhy">
+        <div class="row">
+            @if(Model != null)
+            {
+                int count = 0;
+                foreach (var photo in Model)
+                {
+                    count++;
+
+                    <div class="col-md-4 ftco-animate">
+                        <a href="@photo.Url" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(@photo.Url);">
+                            <div class="overlay"></div>
+                            <div class="text ml-4 mb-4">
+                                <h3>@($"Photo {count:D2}")</h3>
+                                <span class="tag">@string.Join(", ", photo.Tags)</span>
+                            </div>
+                        </a>
+                    </div> 
+                }
+            }
+            
+        </div>
+    </div>
+</section>
