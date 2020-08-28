@@ -3,12 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Visagiste.Infrastructure.Repository;
 using Visagiste.Models;
 
 namespace Visagiste.Controllers
 {
     public class HomeController : Controller
     {
+        private IPhotoRepository photoRepository;
+
+        public HomeController(IPhotoRepository photoRepo)
+        {
+            photoRepository = photoRepo;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -16,22 +24,7 @@ namespace Visagiste.Controllers
 
         public IActionResult Collection()
         {
-            IEnumerable<Photo> photos = new List<Photo>() {
-                new Photo(){Url = "/images/image_1.jpg", Tags = new List<string>{"Model", "Visagiste" } },
-                new Photo(){Url ="/images/image_2.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_3.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_4.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_5.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_6.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_7.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_8.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_9.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_10.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_11.jpg", Tags = new List<string>{ "Model"} },
-                new Photo(){Url ="/images/image_12.jpg", Tags = new List<string>{ "Model"} }
-,            };
-
-            return View(photos);
+            return View(photoRepository.Photos);
         }
 
         public IActionResult About()
