@@ -1,0 +1,27 @@
+﻿@model Owner
+
+<aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
+    <h1 id="colorlib-logo"><a asp-action="@nameof(Index)"><span class="img" style="background-image: url(/images/author.jpg);"></span>@Model.Name</a></h1>
+    <nav id="colorlib-main-menu" role="navigation">
+        <ul>
+            <li id="index" @*class="colorlib-active"*@><a asp-controller="Home" asp-action="@nameof(Index)">Home</a></li>
+            <li id="collection"><a asp-controller="Home" asp-action="Collection">Collection</a></li>
+            <li id="about"><a asp-controller="Home" asp-action="About">About Me</a></li>
+            <li id="services"><a asp-controller="Home" asp-action="Services">My Services</a></li>
+            @*<li><a asp-action="blog.html">Blog</a></li>*@
+            <li id="contact"><a asp-controller="Home" asp-action="Contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    @*<div class="colorlib-footer">
+            <h3>Newsletter</h3>
+            <div class="d-flex justify-content-center">
+                <form action="#" class="colorlib-subscribe-form">
+                    <div class="form-group d-flex">
+                        <div class="icon"><span class="icon-paper-plane"></span></div>
+                        <input type="text" class="form-control" placeholder="Enter Email Address">
+                    </div>
+                </form>
+            </div>
+        </div>*@
+</aside> <!-- END COLORLIB-ASIDE -->

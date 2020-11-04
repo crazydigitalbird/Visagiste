@@ -8209,6 +8209,10 @@ textarea.form-control {
 .ftco-section-3 {
   padding: 1.8em; }
 
+.ftco-section-padding-1 {
+    padding: 1em;
+}
+
 .ftco-footer {
   font-size: 14px;
   background: #242423;

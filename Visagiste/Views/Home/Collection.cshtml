@@ -25,7 +25,7 @@
                             <div class="overlay"></div>
                             <div class="text ml-4 mb-4">
                                 <h3>@($"Photo {count:D2}")</h3>
-                                <span class="tag">@string.Join(", ", photo.Tags)</span>
+                                <span class="tag">@(photo.Tags?.Count > 0 ? string.Join(", ", photo.Tags) : "")</span>
                             </div>
                         </a>
                     </div> 

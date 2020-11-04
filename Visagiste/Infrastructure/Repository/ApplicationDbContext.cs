@@ -11,9 +11,17 @@ namespace Visagiste.Infrastructure.Repository
 
         public DbSet<Photo> Photos { get; set; }
 
+        internal ApplicationDbContext Include(Func<object, object> p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DbSet<Owner> Owners { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Photo>().Property(p => p.Tags).HasConversion(v => string.Join(",", v), v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+            modelBuilder.Entity<Photo>().Property(p => p.Tags).HasConversion(t => string.Join(",", t), s => s.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList());
+            modelBuilder.Entity<Owner>().Property(o => o.Banners).HasConversion(b => string.Join(",", b), s => s.Split(",", StringSplitOptions.RemoveEmptyEntries).ToList());
         }
     }
 }

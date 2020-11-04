@@ -10,16 +10,19 @@ namespace Visagiste.Controllers
 {
     public class HomeController : Controller
     {
+        private IOwnerRepository ownerRepository;
         private IPhotoRepository photoRepository;
 
-        public HomeController(IPhotoRepository photoRepo)
+        public HomeController(IOwnerRepository ownerRepository, IPhotoRepository photoRepository)
         {
-            photoRepository = photoRepo;
+            this.ownerRepository = ownerRepository;
+            this.photoRepository = photoRepository;
         }
 
         public IActionResult Index()
         {
-            return View();
+            Owner owner = ownerRepository.Get();
+            return View(owner);
         }
 
         public IActionResult Collection()
