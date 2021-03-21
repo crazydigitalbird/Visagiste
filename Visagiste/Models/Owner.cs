@@ -12,7 +12,7 @@ namespace Visagiste.Models
 
         public Contact Contact { get; set; }
 
-        public string Avatar { get; set; }
+        public Avatar Avatar { get; set; }
 
         public List<string> Banners { get; set; } 
 

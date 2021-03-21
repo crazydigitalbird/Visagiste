@@ -3,54 +3,61 @@
 <section class="ftco-section ftco-section-padding-1 contact-section">
     <div class="container">
 
-        <div class="row block-9">
-            <div class="col-md-6 d-flex">
-                <form asp-action="Index" method="post" class="bg-light p-5 contact-form">
-                    @if (TempData["message"] != null)
-                    {
-                        <div class="alert alert-success">@TempData["message"]</div>
-                    }
-                    <div class="form-group">
-                        <input asp-for="Name" type="text" class="form-control" placeholder="Name" value="@Model?.Name">
-                        <span asp-validation-for="Name" class="text-danger"></span>
+        <form asp-action="Index" method="post">
+            <div class="row block-9">
+                <div class="col-md-6 d-flex">
+                    <div class="bg-light p-5 contact-form">
+                        @if (TempData["message"] != null)
+                        {
+                            <div class="alert alert-success">@TempData["message"]</div>
+                        }
+                        <div class="form-group">
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Name" value="@Model?.Name">
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Contact.Phone" type="text" class="form-control" placeholder="Phone" value="@Model?.Contact?.Phone">
+                            <span asp-validation-for="Contact.Phone"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Contact.Address" type="text" class="form-control" placeholder="Address" value="@Model?.Contact?.Address">
+                            <span asp-validation-for="Contact.Address"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Contact.Email" type="text" class="form-control" placeholder="Email" value="@Model.Contact.Email">
+                            <span asp-validation-for="Contact.Email"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Contact.InstagramUrl" type="text" class="form-control" placeholder="Instagram" value="@Model.Contact.InstagramUrl">
+                            <span asp-validation-for="Contact.InstagramUrl"></span>
+                        </div>
+                        <div class="form-group">
+                            <input asp-for="Contact.VkUrl" type="text" class="form-control" placeholder="Vkontakte" value="@Model.Contact.VkUrl">
+                            <span asp-validation-for="Contact.VkUrl"></span>
+                        </div>
+                        <div class="form-group">
+                            <textarea asp-for="AboutMe" cols="30" rows="7" class="form-control" placeholder="About Me">@Model.AboutMe</textarea>
+                        </div>
+                        <div class="form-group">
+                            <input id="btnSubmit" type="submit" value="Save" class="btn btn-primary py-3 px-5">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <input asp-for="Contact.Phone" type="text" class="form-control" placeholder="Phone" value="@Model?.Contact?.Phone">
-                        <span asp-validation-for="Contact.Phone"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="Contact.Address" type="text" class="form-control" placeholder="Address" value="@Model?.Contact?.Address">
-                        <span asp-validation-for="Contact.Address"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="Contact.Email" type="text" class="form-control" placeholder="Email" value="@Model.Contact.Email">
-                        <span asp-validation-for="Contact.Email"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="Contact.InstagramUrl" type="text" class="form-control" placeholder="Instagram" value="@Model.Contact.InstagramUrl">
-                        <span asp-validation-for="Contact.InstagramUrl"></span>
-                    </div>
-                    <div class="form-group">
-                        <input asp-for="Contact.VkUrl" type="text" class="form-control" placeholder="Vkontakte" value="@Model.Contact.VkUrl">
-                        <span asp-validation-for="Contact.VkUrl"></span>
-                    </div>
-                    <div class="form-group">
-                        <textarea asp-for="AboutMe" cols="30" rows="7" class="form-control" placeholder="About Me">@Model.AboutMe</textarea>
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" value="Save" class="btn btn-primary py-3 px-5">
-                    </div>
-                </form>
-            </div>
+                </div>
 
-            <div class="col-md-6 d-flex">
-                <div class="bg-light p-5 contact-form">
-                    <a asp-action="@nameof(Index)">
-                        <div style="background-image: url(/images/author.jpg); background-size: cover; width: 160px; height: 160px; border-radius: 50%; background-position: center center; margin:auto"></div>
-                    </a>
+                <div class="col-md-6 d-flex">
+                    <div class="bg-light p-5 contact-form">
+                        <div id="avatar" style="background-image: url(/images/author.jpg); background-size: cover; width: 160px; height: 160px; border-radius: 50%; background-position: @Model.Avatar.X @Model.Avatar.Y; margin:auto">
+                        </div>
+                        <input asp-for="Avatar.X" type="hidden" value="@Model.Avatar.X" />
+                        <input asp-for="Avatar.Y" type="hidden" value="@Model.Avatar.Y" />
+                        <div class="form-group">
+                            <input asp-for="Avatar.Url" type="hidden" value="@Model.Avatar.Url" />
+                        </div>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </form>
     </div>
 </section>
+
+<script src="/js/avatar.position.js"></script>

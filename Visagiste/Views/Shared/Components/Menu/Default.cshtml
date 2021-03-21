@@ -1,7 +1,7 @@
 ﻿@model Owner
 
 <aside id="colorlib-aside" role="complementary" class="js-fullheight text-center">
-    <h1 id="colorlib-logo"><a asp-action="@nameof(Index)"><span class="img" style="background-image: url(/images/author.jpg);"></span>@Model.Name</a></h1>
+    <h1 id="colorlib-logo"><a asp-action="@nameof(Index)"><span class="img" style="background-image: url(@Model.Avatar.Url);background-position: @Model.Avatar.X @Model.Avatar.Y;"></span>@Model.Name</a></h1>
     <nav id="colorlib-main-menu" role="navigation">
         <ul>
             <li id="index" @*class="colorlib-active"*@><a asp-controller="Home" asp-action="@nameof(Index)">Home</a></li>

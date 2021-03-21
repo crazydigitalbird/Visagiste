@@ -83,10 +83,17 @@ namespace Visagiste
                 InstagramUrl = "https://www.instagram.com/oksanasolovey_mua/",
                 VkUrl = "https://vk.com/id25029075"
             };
+
+            Avatar avatar = new Avatar {
+                Url = "/images/author.jpg",
+                X = "0",
+                Y = "0"
+            };
+
             Owner owner = new Owner() { 
                 Name = "Ivan Ivanov",
                 Contact = contact,
-                Avatar = "/images/author.jpg",
+                Avatar = avatar,
                 Banners = new List<string> {"/images/author.jpg", "/images/author-2.jpg" },
                 AboutMe = "I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
             };

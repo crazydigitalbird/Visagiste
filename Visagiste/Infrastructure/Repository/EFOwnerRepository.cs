@@ -22,7 +22,7 @@ namespace Visagiste.Components
 
         public Owner Get()
         {
-            return dbContext.Owners.Include(o => o.Contact).FirstOrDefault();
+            return dbContext.Owners.Include(o => o.Contact).Include(o => o.Avatar).FirstOrDefault();
         }
 
         public void Update(Owner owner)
@@ -37,6 +37,9 @@ namespace Visagiste.Components
                 dbOwner.Contact.Email = owner.Contact.Email;
                 dbOwner.Contact.InstagramUrl = owner.Contact.InstagramUrl;
                 dbOwner.Contact.VkUrl = owner.Contact.VkUrl;
+                dbOwner.Avatar.Url = owner.Avatar.Url;
+                dbOwner.Avatar.X = owner.Avatar.X;
+                dbOwner.Avatar.Y = owner.Avatar.Y;
 
                 dbContext.SaveChanges();
             }

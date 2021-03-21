@@ -22,6 +22,7 @@ namespace Visagiste.Controllers
         public IActionResult Index()
         {
             Owner owner = ownerRepository.Get();
+            
             return View(owner);
         }
 
