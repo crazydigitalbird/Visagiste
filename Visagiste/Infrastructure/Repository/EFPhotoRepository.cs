@@ -32,7 +32,7 @@ namespace Visagiste.Infrastructure.Repository
         public void UpdatePhoto(Photo photo)
         {
             Photo photoDb = dbContext.Photos.Find(photo.Id);
-            photoDb.Url = photo.Url;
+            photoDb.FullName = photo.FullName;
             photoDb.Tags = photo.Tags;
             dbContext.SaveChanges();
         }

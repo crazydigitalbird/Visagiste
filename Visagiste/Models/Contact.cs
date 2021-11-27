@@ -4,7 +4,7 @@ namespace Visagiste.Models
 {
     public class Contact
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
 
         public string Address { get; set; }
 

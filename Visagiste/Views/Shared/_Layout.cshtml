@@ -41,7 +41,7 @@
         
             @RenderBody()
 
-            @await Component.InvokeAsync("Footer"); 
+            @*@await Component.InvokeAsync("Footer"); *@
 
         </div><!-- END COLORLIB-MAIN -->
     </div><!-- END COLORLIB-PAGE -->
@@ -67,6 +67,8 @@
     <script src="/js/google-map.js"></script>
     <script src="/js/main.js"></script>
     <script src="~/js/site.js"></script>
+
+                @RenderSection("scripts", required: false)
 
 </body>
 </html>
