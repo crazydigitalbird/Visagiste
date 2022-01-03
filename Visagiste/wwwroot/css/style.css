@@ -8357,15 +8357,20 @@ textarea.form-control {
   letter-spacing: 3px;
   text-transform: uppercase; }
 
-.author-img,
+.img {
+    background-size: cover;
+    background-position: center center;
+}
+
+.author-img
 .hero-wrap,
-.img,
 .blog-img,
 .insta-img,
 .user-img {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center; }
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
 
 .bg-light {
   background: #f8f9fa !important; }

@@ -3,7 +3,7 @@
 <section class="ftco-section ftco-section-padding-1 contact-section">
     <div class="container">
 
-        <form asp-action="Index" method="post">
+        <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div class="row block-9">
                 <div class="col-md-6 d-flex">
                     <div class="bg-light p-5 contact-form">
@@ -38,26 +38,34 @@
                         <div class="form-group">
                             <textarea asp-for="AboutMe" cols="30" rows="7" class="form-control" placeholder="About Me">@Model.AboutMe</textarea>
                         </div>
-                        <div class="form-group">
-                            <input id="btnSubmit" type="submit" value="Save" class="btn btn-primary py-3 px-5">
-                        </div>
                     </div>
                 </div>
 
                 <div class="col-md-6 d-flex">
                     <div class="bg-light p-5 contact-form">
-                        <div id="avatar" style="background-image: url(/images/author.jpg); background-size: cover; width: 160px; height: 160px; border-radius: 50%; background-position: @Model.Avatar.X @Model.Avatar.Y; margin:auto">
+                        <div id="avatar" style="background-image: url(/images/author.jpg); background-size: cover; width: 160px; height: 160px; border-radius: 50%; background-position: @($"{Model.Avatar.X}px") @($"{Model.Avatar.Y}px"); touch-action: none; margin:auto">
                         </div>
-                        <input asp-for="Avatar.X" type="hidden" value="@Model.Avatar.X" />
-                        <input asp-for="Avatar.Y" type="hidden" value="@Model.Avatar.Y" />
+                        <input asp-for="Avatar.X" type="hidden" />
+                        <input asp-for="Avatar.Y" type="hidden" />
                         <div class="form-group">
-                            <input asp-for="Avatar.Url" type="hidden" value="@Model.Avatar.Url" />
+                            <input asp-for="Avatar.Url" type="hidden" />
+                        </div>
+                        <div class="text-center">
+                            <label class="btn btn-outline-dark">
+                                Browse
+                                <input type="file" hidden name="AvatarFile" accept="image/*,image/jpeg" />
+                            </label>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col text-center">
+                    <input id="btnSave" type="submit" value="Save" class="btn btn-primary m-1">
                 </div>
             </div>
         </form>
     </div>
 </section>
 
-<script src="/js/avatar.position.js"></script>
+<script src="/js/avatar.js"></script>

@@ -32,7 +32,8 @@ namespace Visagiste.Controllers
 
         public IActionResult About()
         {
-            return View();
+            Owner owner = ownerRepository.Get();
+            return View(owner);
         }
 
         public IActionResult Services()

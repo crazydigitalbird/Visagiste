@@ -1,4 +1,5 @@
-﻿
+﻿@model Owner
+
 <section class="ftco-section-no-padding bg-light">
     <div class="hero-wrap">
         <div class="overlay"></div>
@@ -9,14 +10,13 @@
             <div class="author-info text p-4 p-md-5 mt-5 mb-5">
                 <div class="desc">
                     <span class="subheading">Nice To Meet You</span>
-                    <h1 class="big-letter">Louie Smith</h1>
-                    <h1 class="mb-4"><span>My Name is Louie Smith</span></h1>
-                    <p class="mb-4">I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                    <h3 class="signature h1">Louie Smith</h3>
+                    <h1 class="big-letter">@Model.Name</h1>
+                    <h1 class="mb-4"><span>@($"My Name is {Model.Name}")</span></h1>
+                    <p class="mb-4">@Model.AboutMe</p>
+                    <h3 class="signature h1">@Model.Name</h3>
                     <ul class="ftco-social mt-3">
-                        <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+                        <li class="ftco-animate"><a href="@Model.Contact?.VkUrl"><span class="icon-vk"></span></a></li>
+                        <li class="ftco-animate"><a href="@Model.Contact?.InstagramUrl"><span class="icon-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
