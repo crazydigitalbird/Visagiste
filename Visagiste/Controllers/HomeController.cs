@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Visagiste.Infrastructure.Repository;
 using Visagiste.Models;
 
@@ -19,9 +16,9 @@ namespace Visagiste.Controllers
             this.photoRepository = photoRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Owner owner = ownerRepository.Get();
+            Owner owner = await ownerRepository.GetAsync();
             return View(owner);
         }
 
@@ -30,9 +27,9 @@ namespace Visagiste.Controllers
             return View(photoRepository.Photos);
         }
 
-        public IActionResult About()
+        public async Task<IActionResult> About()
         {
-            Owner owner = ownerRepository.Get();
+            Owner owner = await ownerRepository.GetAsync();
             return View(owner);
         }
 

@@ -1,13 +1,14 @@
-﻿using Visagiste.Models;
+﻿using System.Threading.Tasks;
+using Visagiste.Models;
 
 namespace Visagiste.Infrastructure.Repository
 {
     public interface IOwnerRepository
     {
-        Owner Get();
+        Task<Owner> GetAsync();
 
-        void Add(Owner owner);
+        Task AddAsync(Owner owner);
 
-        void Update(Owner owner);
+        Task UpdateAsync(Owner owner);
     }
 }

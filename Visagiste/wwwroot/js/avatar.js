@@ -101,7 +101,6 @@ inputAvatarFile.addEventListener("change", (e) => {
     var reader = new FileReader();
     reader.onloadend = function () {
         divAvatar.style.backgroundImage = 'url("' + reader.result + '")';
-
         readSizeAvatar(reader.result);
     };
 

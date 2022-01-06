@@ -23,7 +23,7 @@ namespace Visagiste.Models
         private void Save(IFormFile avatarFile)
         {
             string ext = Path.GetExtension(avatarFile.FileName);
-            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot\\images", $"author{ext}");
+            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot", "images", $"author{ext}");
             using (FileStream fs = new FileStream(avatarFullName, FileMode.OpenOrCreate))
             {
                 avatarFile.CopyTo(fs);
@@ -32,7 +32,7 @@ namespace Visagiste.Models
 
         private void Delete()
         {
-            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot\\images", Path.GetFileName(Url));
+            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot", "images", Path.GetFileName(Url));
             File.Delete(avatarFullName);
         }
     }

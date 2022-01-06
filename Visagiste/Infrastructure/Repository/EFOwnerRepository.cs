@@ -1,9 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Linq;
-using Visagiste.Infrastructure.Repository;
+using System.Threading.Tasks;
 using Visagiste.Models;
 
-namespace Visagiste.Components
+namespace Visagiste.Infrastructure.Repository
 {
     public class EFOwnerRepository : IOwnerRepository
     {
@@ -14,20 +13,24 @@ namespace Visagiste.Components
             dbContext = context;
         }
 
-        public void Add(Owner owner)
+        public async Task AddAsync(Owner owner)
         {
-            dbContext.Owners.Add(owner);
-            dbContext.SaveChanges();
+            await dbContext.Owners.AddAsync(owner);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Owner Get()
+        public async Task<Owner> GetAsync()
         {
-            return dbContext.Owners.Include(o => o.Contact).Include(o => o.Avatar).FirstOrDefault();
+            Owner owner = await dbContext.Owners
+                .Include(o => o.Contact)
+                .Include(o => o.Avatar)
+                .FirstOrDefaultAsync();
+            return owner;
         }
 
-        public void Update(Owner owner)
+        public async Task UpdateAsync(Owner owner)
         {
-            Owner dbOwner = Get();
+            Owner dbOwner = await GetAsync();
             if(dbOwner != null)
             {
                 dbOwner.Name = owner.Name;
@@ -41,7 +44,7 @@ namespace Visagiste.Components
                 dbOwner.Avatar.X = owner.Avatar.X;
                 dbOwner.Avatar.Y = owner.Avatar.Y;
 
-                dbContext.SaveChanges();
+               await dbContext.SaveChangesAsync();
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 using Visagiste.Infrastructure.Repository;
 using Visagiste.Models;
 
@@ -17,15 +18,15 @@ namespace Visagiste.Controllers
             this.ownerRepository = ownerRepository;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            Owner owner = ownerRepository.Get();
+            Owner owner = await ownerRepository.GetAsync();
 
             return View(owner);
         }
 
         [HttpPost]
-        public IActionResult Index(Owner owner, IFormFile avatarFile)
+        public async Task<IActionResult> Index(Owner owner, IFormFile avatarFile)
         {
             if (ModelState.IsValid)
             {
@@ -33,7 +34,7 @@ namespace Visagiste.Controllers
                 {
                     owner.Avatar.Update(avatarFile);
                 }
-                ownerRepository.Update(owner);
+                await ownerRepository.UpdateAsync(owner);
                 TempData["message"] = "Owner information has been successfully updated.";
                 return RedirectToAction(nameof(Index));
             }
