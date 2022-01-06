@@ -14,6 +14,8 @@ namespace Visagiste.Models
 
         public int Y { get; set; }
 
+        public int OwnerId { get; set; }
+
         internal void Update(IFormFile avatarFile)
         {
             Delete();

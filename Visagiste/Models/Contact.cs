@@ -19,5 +19,7 @@ namespace Visagiste.Models
 
         [Url]
         public string VkUrl { get; set; }
+
+        public int OwnerId { get; set; }
     }
 }

@@ -51,12 +51,6 @@ namespace Visagiste
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-
-                bool ensureCreated = applicationDbContext.Database.EnsureCreated();
-                if (!ensureCreated)
-                {
-                    SeedData(applicationDbContext);
-                }
             }
             else
             {
@@ -76,51 +70,6 @@ namespace Visagiste
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        private void SeedData(ApplicationDbContext dbContext)
-        {
-            IEnumerable<Photo> photos = new List<Photo>() {
-                            new Photo(){FullName = "/images/image_1.jpg", Tags = new List<string>{"Model", "Visagiste" } },
-                            new Photo(){FullName = "/images/image_2.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_3.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_4.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_5.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_6.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_7.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_8.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_9.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_10.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_11.jpg", Tags = new List<string>{ "Model"} },
-                            new Photo(){FullName = "/images/image_12.jpg", Tags = new List<string>{ "Model"} }};
-
-            dbContext.Photos.AddRange(photos);
-
-            Contact contact = new Contact()
-            {
-                Address = "203 Fake St. Mountain View, San Francisco, California, USA",
-                Email = "info@yourdomain.com",
-                Phone = "+2 392 3929 210",
-                InstagramUrl = "https://www.instagram.com/",
-                VkUrl = "https://vk.com/"
-            };
-
-            Avatar avatar = new Avatar
-            {
-                Url = "/images/author.jpg"
-            };
-
-            Owner owner = new Owner()
-            {
-                Name = "Ivan Ivanov",
-                Contact = contact,
-                Avatar = avatar,
-                Banners = new List<string>(2) { "/images/author.jpg", "/images/author-2.jpg" },
-                AboutMe = "I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
-            };
-            dbContext.Owners.Add(owner);
-
-            dbContext.SaveChanges();
         }
     }
 }
