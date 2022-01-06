@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Visagiste.Infrastructure.Repository;
+using Visagiste.Models;
 
 namespace Visagiste.Components
 {
@@ -13,9 +14,10 @@ namespace Visagiste.Components
             ownerRepository = ownerRepo;
         }
 
-        public async Task<IViewComponentResult> Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
-            return View(await ownerRepository.GetAsync());
+            Owner owner = await ownerRepository.GetAsync();
+            return View(owner);
         }
     }
 }

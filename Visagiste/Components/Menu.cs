@@ -10,7 +10,7 @@ namespace Visagiste.Components
         private readonly IOwnerRepository ownerRepository;
 
         public Menu(IOwnerRepository ownerRepository) => this.ownerRepository = ownerRepository;
-        public async Task<IViewComponentResult> Invoke()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             Owner owner = await ownerRepository.GetAsync();
             return View(owner);
