@@ -10,7 +10,7 @@ using Visagiste.Infrastructure.Repository;
 namespace Visagiste.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220106191844_DataSeeding")]
+    [Migration("20220107183558_DataSeeding")]
     partial class DataSeeding
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

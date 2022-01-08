@@ -59,6 +59,15 @@ namespace Visagiste.Infrastructure.Repository
                 new Photo() { Id = 11, FullName = "/images/image_11.jpg", Tags = new List<string> { "Model" } },
                 new Photo() { Id = 12, FullName = "/images/image_12.jpg", Tags = new List<string> { "Model" } });
 
+            modelBuilder.Entity<Owner>().HasData(
+                new Owner
+                {
+                    Id = 1,
+                    Name = "Ivan Ivanov",
+                    Banners = new List<string>(2) { "/images/author.jpg", "/images/author-2.jpg" },
+                    AboutMe = "I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
+                });
+
             modelBuilder.Entity<Contact>().HasData(
                 new Contact
                 {
@@ -79,14 +88,6 @@ namespace Visagiste.Infrastructure.Repository
                     OwnerId = 1
                 });
 
-            modelBuilder.Entity<Owner>().HasData(
-                new Owner
-                {
-                    Id = 1,
-                    Name = "Ivan Ivanov",
-                    Banners = new List<string>(2) { "/images/author.jpg", "/images/author-2.jpg" },
-                    AboutMe = "I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
-                });
         }
     }
 }
