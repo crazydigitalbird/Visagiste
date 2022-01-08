@@ -45,7 +45,7 @@ namespace Visagiste
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext applicationDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
 
             if (env.IsDevelopment())
@@ -70,6 +70,8 @@ namespace Visagiste
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            IdentityDbContext.CreateAdminAccount(Configuration, app.ApplicationServices).Wait();
         }
     }
 }
