@@ -31,7 +31,7 @@ namespace Visagiste.Infrastructure.Repository
         public async Task UpdateAsync(Owner owner)
         {
             Owner dbOwner = await GetAsync();
-            if(dbOwner != null)
+            if (dbOwner != null)
             {
                 dbOwner.Name = owner.Name;
                 dbOwner.AboutMe = owner.AboutMe;
@@ -40,11 +40,14 @@ namespace Visagiste.Infrastructure.Repository
                 dbOwner.Contact.Email = owner.Contact.Email;
                 dbOwner.Contact.InstagramUrl = owner.Contact.InstagramUrl;
                 dbOwner.Contact.VkUrl = owner.Contact.VkUrl;
-                dbOwner.Avatar.Url = owner.Avatar.Url;
+                if (owner.Avatar.Image != null)
+                {
+                    dbOwner.Avatar.Image = owner.Avatar.Image;
+                }
                 dbOwner.Avatar.X = owner.Avatar.X;
                 dbOwner.Avatar.Y = owner.Avatar.Y;
 
-               await dbContext.SaveChangesAsync();
+                await dbContext.SaveChangesAsync();
             }
         }
     }

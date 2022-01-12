@@ -14,7 +14,7 @@ namespace Visagiste.Models
 
         public Avatar Avatar { get; set; }
 
-        public List<string> Banners { get; set; } 
+        public List<string> Banners { get; set; }
 
         public string AboutMe { get; set; }
     }

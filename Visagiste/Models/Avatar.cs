@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
+using System.Threading.Tasks;
 using System.IO;
 
 namespace Visagiste.Models
@@ -8,7 +8,7 @@ namespace Visagiste.Models
     {
         public int Id { get; set; }
 
-        public string Url { get; set; }
+        public byte[] Image { get; set; }
 
         public int X { get; set; }
 
@@ -16,26 +16,13 @@ namespace Visagiste.Models
 
         public int OwnerId { get; set; }
 
-        internal void Update(IFormFile avatarFile)
+        internal async Task Update(IFormFile avatarFile)
         {
-            Delete();
-            Save(avatarFile);
-        }
-
-        private void Save(IFormFile avatarFile)
-        {
-            string ext = Path.GetExtension(avatarFile.FileName);
-            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot", "images", $"author{ext}");
-            using (FileStream fs = new FileStream(avatarFullName, FileMode.OpenOrCreate))
+            using (MemoryStream ms = new MemoryStream())
             {
-                avatarFile.CopyTo(fs);
+                await avatarFile.CopyToAsync(ms);
+                Image = ms.ToArray();
             }
-        }
-
-        private void Delete()
-        {
-            string avatarFullName = Path.Combine(Environment.CurrentDirectory, "wwwroot", "images", Path.GetFileName(Url));
-            File.Delete(avatarFullName);
         }
     }
 }

@@ -6,6 +6,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <None Remove="Application.db-shm" />
+	  <None Remove="Application.db-wal" />
+	  <None Remove="Identity.db-shm" />
+	  <None Remove="Identity.db-wal" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.0" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
@@ -15,6 +22,10 @@
 		</PackageReference>
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="wwwroot\images\SeedData\" />
 	</ItemGroup>
 
 </Project>

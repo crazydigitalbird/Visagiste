@@ -2,15 +2,19 @@
 
 <section class="ftco-section ftco-section-padding-1 contact-section">
     <div class="container">
-
+        <div class="row">
+            <div class="col">
+                @if (TempData["message"] != null)
+                {
+                    <div class="alert alert-success">@TempData["message"]</div>
+                }
+                <div class="alert alert-danger" asp-validation-summary="ModelOnly"></div>
+            </div>
+        </div>
         <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div class="row block-9">
                 <div class="col-md-6 d-flex">
                     <div class="bg-light p-5 contact-form">
-                        @if (TempData["message"] != null)
-                        {
-                            <div class="alert alert-success">@TempData["message"]</div>
-                        }
                         <div class="form-group">
                             <input asp-for="Name" type="text" class="form-control" placeholder="Name" value="@Model?.Name">
                             <span asp-validation-for="Name" class="text-danger"></span>
@@ -43,25 +47,46 @@
 
                 <div class="col-md-6 d-flex">
                     <div class="bg-light p-5 contact-form">
-                        <div id="avatar" style="background-image: url(/images/author.jpg); background-size: cover; width: 160px; height: 160px; border-radius: 50%; background-position: @($"{Model.Avatar.X}px") @($"{Model.Avatar.Y}px"); touch-action: none; margin:auto">
-                        </div>
                         <input asp-for="Avatar.X" type="hidden" />
                         <input asp-for="Avatar.Y" type="hidden" />
-                        <div class="form-group">
+                        <input asp-for="Banners[0]" type="hidden" />
+                        <input asp-for="Banners[1]" type="hidden" />
+                        <div id="avatar" style="@(ViewBag.BackgroundImage)"></div>
+                        @*                        <div class="form-group">
                             <input asp-for="Avatar.Url" type="hidden" />
-                        </div>
-                        <div class="text-center">
+                            </div>*@
+                        <div class="text-center m-1">
                             <label class="btn btn-outline-dark">
                                 Browse
                                 <input type="file" hidden name="AvatarFile" accept="image/*,image/jpeg" />
                             </label>
                         </div>
+                        <div class="row text-center">
+                            <div class="col m-1">
+                                <label class="btn">
+                                    <div id="bannerOne" class="banner" style="background-image: url(@Model.Banners[0])">
+                                        <span class="icon-folder-open-o"></span>
+                                    </div>
+                                    Banner One
+                                    <input type="file" hidden name="BannerOne" accept="image/*,image/jpeg" />
+                                </label>
+                            </div>
+                            <div class="col m-1">
+                                <label class="btn">
+                                    <div id="bannerTwo" class="banner" style="background-image: url(@Model.Banners[1])">
+                                        <span class="icon-folder-open-o"></span>
+                                    </div>
+                                    Banner Two
+                                    <input type="file" hidden name="BannerTwo" accept="image/*,image/jpeg" />
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col text-center">
-                    <input id="btnSave" type="submit" value="Save" class="btn btn-primary m-1">
+                <div class="col">
+                    <input id="btnSave" type="submit" value="Save" class="btn btn-primary mt-3 btn-block">
                 </div>
             </div>
         </form>

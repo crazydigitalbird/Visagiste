@@ -14,8 +14,7 @@ loadImage();
 
 function loadImage() {
     var imageSrc = divAvatar
-        .style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2')
-        .split(',')[0];
+        .style.backgroundImage.replace(/url\((['"])?(.*?)\1\)/gi, '$2');
 
     // I just broke it up on newlines for readability
     readSizeAvatar(imageSrc);
@@ -101,6 +100,8 @@ inputAvatarFile.addEventListener("change", (e) => {
     var reader = new FileReader();
     reader.onloadend = function () {
         divAvatar.style.backgroundImage = 'url("' + reader.result + '")';
+        divAvatar.style.backgroundPositionX = "0px";
+        divAvatar.style.backgroundPositionY = "0px";
         readSizeAvatar(reader.result);
     };
 
@@ -108,3 +109,23 @@ inputAvatarFile.addEventListener("change", (e) => {
         reader.readAsDataURL(avatarFile);
     }
 });
+
+var inputBannerOne = document.querySelector('input[name="BannerOne"]');
+var divBannerOne = document.querySelector('#bannerOne');
+inputBannerOne.addEventListener("change", () => setBackgroundImage(divBannerOne));
+
+var inputBannerTwo = document.querySelector('input[name="BannerTwo"]');
+var divBannerTwo = document.querySelector('#bannerTwo');
+inputBannerTwo.addEventListener("change", () => setBackgroundImage(divBannerTwo));
+
+
+function setBackgroundImage(mutabelElement) {
+    var file = event.currentTarget.files[0];
+    var reader = new FileReader();
+    reader.onloadend = function () {
+        mutabelElement.style.backgroundImage = 'url("' + reader.result + '")';
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    }
+}

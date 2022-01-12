@@ -1,9 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Visagiste.Models;
 
@@ -11,7 +13,12 @@ namespace Visagiste.Infrastructure.Repository
 {
     public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+        private readonly IWebHostEnvironment webHostEnvironment;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IWebHostEnvironment webHostEnv) : base(options)
+        {
+            this.webHostEnvironment = webHostEnv;
+        }
 
         public DbSet<Owner> Owners { get; set; }
 
@@ -64,7 +71,7 @@ namespace Visagiste.Infrastructure.Repository
                 {
                     Id = 1,
                     Name = "Ivan Ivanov",
-                    Banners = new List<string>(2) { "/images/author.jpg", "/images/author-2.jpg" },
+                    Banners = new List<string>(2) { "/images/SeedData/banner-1.jpg", "/images/SeedData/banner-2.jpg" },
                     AboutMe = "I am A Photographer from America Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean."
                 });
 
@@ -84,10 +91,27 @@ namespace Visagiste.Infrastructure.Repository
                 new Avatar
                 {
                     Id = 1,
-                    Url = "/images/author.jpg",
+                    Image = ReadImage("author.jpg"),
                     OwnerId = 1
                 });
 
+        }
+
+        private byte[] ReadImage(string fileName)
+        {
+            string fullFileName = Path.Combine(webHostEnvironment.WebRootPath, "images", "SeedData", fileName);
+            if (File.Exists(fullFileName))
+            {
+                try
+                {
+                    return File.ReadAllBytes(fullFileName);
+                }
+                catch 
+                {
+                    //TODO: Log
+                }
+            }
+            return null;
         }
     }
 }
