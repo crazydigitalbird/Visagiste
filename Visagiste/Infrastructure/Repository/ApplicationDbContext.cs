@@ -84,6 +84,7 @@ namespace Visagiste.Infrastructure.Repository
                     Phone = "+2 392 3929 210",
                     InstagramUrl = "https://www.instagram.com/",
                     VkUrl = "https://vk.com/",
+                    Map = "<script type=\"text/javascript\" charset=\"utf-8\" async src=\"https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A3c1d989bb05c7ef404fd41c59995fe2231f79de65bef8c8c41033e8682000645&amp;lang=ru_RU&amp;scroll=true\"></script>",
                     OwnerId = 1
                 });
 

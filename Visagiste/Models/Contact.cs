@@ -20,6 +20,8 @@ namespace Visagiste.Models
         [Url]
         public string VkUrl { get; set; }
 
+        public string Map { get; set; }
+
         public int OwnerId { get; set; }
     }
 }

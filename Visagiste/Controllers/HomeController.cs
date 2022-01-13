@@ -38,9 +38,10 @@ namespace Visagiste.Controllers
             return View();
         }
 
-        public IActionResult Contact()
+        public async Task<IActionResult> Contact()
         {
-            return View();
+            Owner owner = await ownerRepository.GetAsync();
+            return View(owner.Contact);
         }
     }
 }

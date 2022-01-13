@@ -40,6 +40,7 @@ namespace Visagiste.Infrastructure.Repository
                 dbOwner.Contact.Email = owner.Contact.Email;
                 dbOwner.Contact.InstagramUrl = owner.Contact.InstagramUrl;
                 dbOwner.Contact.VkUrl = owner.Contact.VkUrl;
+                dbOwner.Contact.Map = owner.Contact.Map;
                 if (owner.Avatar.Image != null)
                 {
                     dbOwner.Avatar.Image = owner.Avatar.Image;

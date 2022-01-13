@@ -13,40 +13,43 @@
         </div>
         <form asp-action="Index" method="post" enctype="multipart/form-data">
             <div class="row block-9">
-                <div class="col-md-6 d-flex">
+                <div class="col-md-8 d-flex">
                     <div class="bg-light p-5 contact-form">
                         <div class="form-group">
-                            <input asp-for="Name" type="text" class="form-control" placeholder="Name" value="@Model?.Name">
+                            <input asp-for="Name" type="text" class="form-control" placeholder="Name" />
                             <span asp-validation-for="Name" class="text-danger"></span>
                         </div>
                         <div class="form-group">
-                            <input asp-for="Contact.Phone" type="text" class="form-control" placeholder="Phone" value="@Model?.Contact?.Phone">
+                            <input asp-for="Contact.Phone" type="text" class="form-control" placeholder="Phone" />
                             <span asp-validation-for="Contact.Phone"></span>
                         </div>
                         <div class="form-group">
-                            <input asp-for="Contact.Address" type="text" class="form-control" placeholder="Address" value="@Model?.Contact?.Address">
+                            <input asp-for="Contact.Address" type="text" class="form-control" placeholder="Address" />
                             <span asp-validation-for="Contact.Address"></span>
                         </div>
                         <div class="form-group">
-                            <input asp-for="Contact.Email" type="text" class="form-control" placeholder="Email" value="@Model.Contact.Email">
+                            <input asp-for="Contact.Email" type="text" class="form-control" placeholder="Email" />
                             <span asp-validation-for="Contact.Email"></span>
                         </div>
                         <div class="form-group">
-                            <input asp-for="Contact.InstagramUrl" type="text" class="form-control" placeholder="Instagram" value="@Model.Contact.InstagramUrl">
+                            <input asp-for="Contact.InstagramUrl" type="text" class="form-control" placeholder="Instagram" />
                             <span asp-validation-for="Contact.InstagramUrl"></span>
                         </div>
                         <div class="form-group">
-                            <input asp-for="Contact.VkUrl" type="text" class="form-control" placeholder="Vkontakte" value="@Model.Contact.VkUrl">
+                            <input asp-for="Contact.VkUrl" type="text" class="form-control" placeholder="Vkontakte" />
                             <span asp-validation-for="Contact.VkUrl"></span>
                         </div>
                         <div class="form-group">
-                            <textarea asp-for="AboutMe" cols="30" rows="7" class="form-control" placeholder="About Me">@Model.AboutMe</textarea>
+                            <textarea asp-for="Contact.Map" cols="30" rows="7" class="form-control" placeholder="Map"></textarea>                            
+                        </div>
+                        <div class="form-group">
+                            <textarea asp-for="AboutMe" cols="30" rows="7" class="form-control" placeholder="About Me"></textarea>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-6 d-flex">
-                    <div class="bg-light p-5 contact-form">
+                <div class="col-md-4 d-flex">
+                    <div class="bg-light p-4 contact-form">
                         <input asp-for="Avatar.X" type="hidden" />
                         <input asp-for="Avatar.Y" type="hidden" />
                         <input asp-for="Banners[0]" type="hidden" />
@@ -61,9 +64,9 @@
                                 <input type="file" hidden name="AvatarFile" accept="image/*,image/jpeg" />
                             </label>
                         </div>
-                        <div class="row text-center">
-                            <div class="col m-1">
-                                <label class="btn">
+                        <div class="row">
+                            <div class="col text-center">
+                                <label class="label-hand">
                                     <div id="bannerOne" class="banner" style="background-image: url(@Model.Banners[0])">
                                         <span class="icon-folder-open-o"></span>
                                     </div>
@@ -71,8 +74,10 @@
                                     <input type="file" hidden name="BannerOne" accept="image/*,image/jpeg" />
                                 </label>
                             </div>
-                            <div class="col m-1">
-                                <label class="btn">
+                        </div>
+                        <div class="row">
+                            <div class="col text-center">
+                                <label class="label-hand">
                                     <div id="bannerTwo" class="banner" style="background-image: url(@Model.Banners[1])">
                                         <span class="icon-folder-open-o"></span>
                                     </div>

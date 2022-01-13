@@ -1,4 +1,6 @@
-﻿<section class="ftco-section ftco-bread">
+﻿@model Contact
+
+<section class="ftco-section ftco-bread">
     <div class="container">
         <div class="row no-gutters slider-text justify-content-center align-items-center">
             <div class="col-md-8 ftco-animate">
@@ -59,7 +61,7 @@
             </div>
 
             <div class="col-md-6 d-flex">
-                <div id="map" class="bg-light"></div>
+                @Html.Raw(@Model.Map)
             </div>
         </div>
     </div>
