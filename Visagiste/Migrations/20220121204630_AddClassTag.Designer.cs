@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Visagiste.Infrastructure.Repository;
 
@@ -10,9 +11,10 @@ using Visagiste.Infrastructure.Repository;
 namespace Visagiste.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220121204630_AddClassTag")]
+    partial class AddClassTag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "6.0.0");
@@ -137,7 +139,7 @@ namespace Visagiste.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("FullName")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
@@ -148,62 +150,62 @@ namespace Visagiste.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "image_1.jpg"
+                            FullName = "/images/image_1.jpg"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "image_2.jpg"
+                            FullName = "/images/image_2.jpg"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "image_3.jpg"
+                            FullName = "/images/image_3.jpg"
                         },
                         new
                         {
                             Id = 4,
-                            Name = "image_4.jpg"
+                            FullName = "/images/image_4.jpg"
                         },
                         new
                         {
                             Id = 5,
-                            Name = "image_5.jpg"
+                            FullName = "/images/image_5.jpg"
                         },
                         new
                         {
                             Id = 6,
-                            Name = "image_6.jpg"
+                            FullName = "/images/image_6.jpg"
                         },
                         new
                         {
                             Id = 7,
-                            Name = "image_7.jpg"
+                            FullName = "/images/image_7.jpg"
                         },
                         new
                         {
                             Id = 8,
-                            Name = "image_8.jpg"
+                            FullName = "/images/image_8.jpg"
                         },
                         new
                         {
                             Id = 9,
-                            Name = "image_9.jpg"
+                            FullName = "/images/image_9.jpg"
                         },
                         new
                         {
                             Id = 10,
-                            Name = "image_10.jpg"
+                            FullName = "/images/image_10.jpg"
                         },
                         new
                         {
                             Id = 11,
-                            Name = "image_11.jpg"
+                            FullName = "/images/image_11.jpg"
                         },
                         new
                         {
                             Id = 12,
-                            Name = "image_12.jpg"
+                            FullName = "/images/image_12.jpg"
                         });
                 });
 
@@ -303,7 +305,6 @@ namespace Visagiste.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");

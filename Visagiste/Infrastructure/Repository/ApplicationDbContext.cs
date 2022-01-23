@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Microsoft.AspNetCore.Hosting;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -15,19 +15,16 @@ namespace Visagiste.Infrastructure.Repository
     {
         private readonly IWebHostEnvironment webHostEnvironment;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IWebHostEnvironment webHostEnv) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IWebHostEnvironment webHostEnvironment) : base(options)
         {
-            this.webHostEnvironment = webHostEnv;
+            this.webHostEnvironment = webHostEnvironment;
         }
 
         public DbSet<Owner> Owners { get; set; }
 
         public DbSet<Photo> Photos { get; set; }
 
-        //internal ApplicationDbContext Include(Func<object, object> p)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public DbSet<Tag> Tags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -40,31 +37,41 @@ namespace Visagiste.Infrastructure.Repository
                 list => list.Aggregate(0, (a, v) => HashCode.Combine(a, v.GetHashCode())));
 
             modelBuilder
-                .Entity<Photo>()
-                .Property(p => p.Tags)
-                .HasConversion(converter)
-                .Metadata.SetValueComparer(comparer);
-
-
-            modelBuilder
                 .Entity<Owner>()
                 .Property(o => o.Banners)
                 .HasConversion(converter)
                 .Metadata.SetValueComparer(comparer);
 
             modelBuilder.Entity<Photo>().HasData(
-                new Photo() { Id = 1, FullName = "/images/image_1.jpg", Tags = new List<string> { "Model", "Visagiste" } },
-                new Photo() { Id = 2, FullName = "/images/image_2.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 3, FullName = "/images/image_3.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 4, FullName = "/images/image_4.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 5, FullName = "/images/image_5.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 6, FullName = "/images/image_6.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 7, FullName = "/images/image_7.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 8, FullName = "/images/image_8.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 9, FullName = "/images/image_9.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 10, FullName = "/images/image_10.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 11, FullName = "/images/image_11.jpg", Tags = new List<string> { "Model" } },
-                new Photo() { Id = 12, FullName = "/images/image_12.jpg", Tags = new List<string> { "Model" } });
+                new Photo() { Id = 1, Name = "image_1.jpg" },
+                new Photo() { Id = 2, Name = "image_2.jpg" },
+                new Photo() { Id = 3, Name = "image_3.jpg" },
+                new Photo() { Id = 4, Name = "image_4.jpg" },
+                new Photo() { Id = 5, Name = "image_5.jpg" },
+                new Photo() { Id = 6, Name = "image_6.jpg" },
+                new Photo() { Id = 7, Name = "image_7.jpg" },
+                new Photo() { Id = 8, Name = "image_8.jpg" },
+                new Photo() { Id = 9, Name = "image_9.jpg" },
+                new Photo() { Id = 10, Name = "image_10.jpg" },
+                new Photo() { Id = 11, Name = "image_11.jpg" },
+                new Photo() { Id = 12, Name = "image_12.jpg" });
+            
+            modelBuilder.Entity<Tag>().HasData(
+                new Tag { Id = 1, Name = "Model" },
+                new Tag { Id = 2, Name = "Visagiste" });
+
+            modelBuilder.Entity<PhotoTagJunction>().HasData(
+                new PhotoTagJunction { Id = 1, PhotoId = 1, TagId = 1 },
+                new PhotoTagJunction { Id = 2, PhotoId = 2, TagId = 1 },
+                new PhotoTagJunction { Id = 3, PhotoId = 3, TagId = 1 },
+                new PhotoTagJunction { Id = 4, PhotoId = 4, TagId = 1 },
+                new PhotoTagJunction { Id = 5, PhotoId = 5, TagId = 1 },
+                new PhotoTagJunction { Id = 6, PhotoId = 6, TagId = 1 },
+                new PhotoTagJunction { Id = 7, PhotoId = 7, TagId = 1 },
+                new PhotoTagJunction { Id = 8, PhotoId = 8, TagId = 1 },
+                new PhotoTagJunction { Id = 9, PhotoId = 9, TagId = 1 },
+                new PhotoTagJunction { Id = 10, PhotoId = 1, TagId = 2 },
+                new PhotoTagJunction { Id = 11, PhotoId = 2, TagId = 2 });
 
             modelBuilder.Entity<Owner>().HasData(
                 new Owner
@@ -95,7 +102,6 @@ namespace Visagiste.Infrastructure.Repository
                     Image = ReadImage("author.jpg"),
                     OwnerId = 1
                 });
-
         }
 
         private byte[] ReadImage(string fileName)
@@ -107,7 +113,7 @@ namespace Visagiste.Infrastructure.Repository
                 {
                     return File.ReadAllBytes(fullFileName);
                 }
-                catch 
+                catch
                 {
                     //TODO: Log
                 }

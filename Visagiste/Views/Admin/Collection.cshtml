@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Photo>
+
+<section class="ftco-section ftco-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+            <div class="col-md-8 ftco-animate">
+                <p class="breadcrumbs"><span class="mr-2"><a asp-action="@nameof(Index)">Home</a></span><span>Collection</span></p>
+                <h1 class="bread">My Collection</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section-3">
+    <div class="photograhy">
+        <form method="post" asp-action="RemovePhotos">
+            <div class="row">
+                @if (Model != null)
+                {
+                    int count = 0;
+                    foreach (var photo in Model)
+                    {
+                        count++;
+                        <div class="col-md-4 ftco-animate">
+                            <label class="photography-entry img d-flex justify-content-start align-items-end" style="background-image: url(@($"/images/{photo.Name}"));">
+                                <input type="checkbox" hidden name="photosId" value="@photo.Id" />
+                                <span class="overlay">
+                                    <div class="icon-trash"></div>
+                                </span>
+                                <span class="text ml-4 mb-4">
+                                    <h3>@($"Photo {count:D2}")</h3>
+                                    <span class="tag">@(photo.PhotoTags?.Count() > 0 ? string.Join(", ", photo.PhotoTags.Select(pt => pt.Tag.Name)) : "")</span>
+                                </span>
+                            </label>
+                        </div>
+                    }
+                }
+
+                <div class="fixed-bottom text-right mr-4 pr-1">
+                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                    <a asp-action="AddPhoto" class="btn btn-outline-primary">Add</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</section>

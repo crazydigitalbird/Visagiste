@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Visagiste.Models;
+using System;
+using Microsoft.EntityFrameworkCore;
 
 namespace Visagiste.Infrastructure.Repository
 {
@@ -13,28 +16,34 @@ namespace Visagiste.Infrastructure.Repository
             dbContext = context;
         }
 
-        public IEnumerable<Photo> Photos => dbContext.Photos;
+        public IEnumerable<Photo> Photos => dbContext.Photos
+                                                     .Include(p => p.PhotoTags)
+                                                     .ThenInclude(pt => pt.Tag);
 
-        public void AddPhoto(Photo photo)
+        public Photo Get(int id) => dbContext.Photos.FirstOrDefault(p => p.Id == id);
+
+        public async Task AddAsync(Photo photo)
         {
-            dbContext.Photos.Add(photo);
-            dbContext.SaveChanges();
+            await dbContext.Photos.AddAsync(photo);
+            await dbContext.SaveChangesAsync();
         }
 
-        public void DeletePhoto(Photo photo)
+        public async Task RemoveRangeAsync(IEnumerable<Photo> photos)
         {
-            dbContext.Photos.Remove(photo);
-            dbContext.SaveChanges();
+            dbContext.Photos.RemoveRange(photos);
+            await dbContext.SaveChangesAsync();
         }
 
-        public Photo GetPhoto(long id) => dbContext.Photos.First(p => p.Id == id);
-
-        public void UpdatePhoto(Photo photo)
+        public async Task UpdateAsync(Photo photo)
         {
-            Photo photoDb = dbContext.Photos.Find(photo.Id);
-            photoDb.FullName = photo.FullName;
-            photoDb.Tags = photo.Tags;
-            dbContext.SaveChanges();
+            throw new NotImplementedException();
+            //Photo photoDb = Get(photo.Id);
+            //if (photoDb != null)
+            //{
+            //    photoDb.FullName = photo.FullName;
+            //    photoDb.Tags = photo.Tags;
+            //    await dbContext.SaveChangesAsync();
+            //}
         }
     }
 }

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Tag>
+
+@{
+    ViewBag.Title = "Tags";
+}
+
+<section class="ftco-section ftco-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+            <div class="col-md-8 ftco-animate">
+                <h1 class="bread">@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section contact-section">
+    <div class="container">
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">@TempData["Error"]</div>
+        }
+        <form method="post" asp-action="Add">
+            <div class="input-group">
+                <input class="form-control" type="text" name="Tag.Name" />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">Add</button>
+                </div>
+            </div>
+        </form>
+
+        @if (Model?.Count() > 0)
+        {
+            foreach (Tag tag in Model)
+            {
+                <form method="post" asp-action="Save">
+                    <input type="hidden" name="tag.Id" value="@tag.Id">
+                    <div class="row mt-3">
+
+                        <div class="col">
+                            <input type="text" class="form-control" name="tag.Name" value="@tag.Name">
+                        </div>
+                        <div class="form-inline col-auto">
+                            <button type="submit" class="btn btn-outline-primary btn-round ml-2"><span class="icon-save"></span></button>
+                            <a class="btn btn-outline-danger btn-round ml-2" asp-action="Delete" asp-route-id="@tag.Id"><span class="icon-trash"></span></a>
+                        </div>
+                    </div>
+                </form>
+            }
+        }
+    </div>
+</section>

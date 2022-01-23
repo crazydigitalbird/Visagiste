@@ -1,0 +1,56 @@
+﻿@model PhotoViewModel
+
+@{
+    ViewBag.Title = "Photo Edit";
+    int count = 0;
+}
+
+<section class="ftco-section ftco-bread">
+    <div class="container">
+        <div class="row no-gutters slider-text justify-content-center align-items-center">
+            <div class="col-md-8 ftco-animate">
+                <h1 class="bread">@ViewBag.Title</h1>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="ftco-section contact-section">
+    <div class="container">
+        <div asp-validation-summary="All" class="alert-danger"></div>
+        <form asp-action="AddPhoto" method="post" enctype="multipart/form-data">
+            <div class="text-center mb-3">
+                <img id="img" src="" class="img-fluid" style="max-width: 100%;" />
+            </div>
+            <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" asp-for="FormFile" class="custom-file-input" id="cusotmFile" />
+                    <label class="custom-file-label" for="customFile">Choose file...</label>
+                </div>
+            </div>
+            @if (Model.Tags != null)
+            {
+                <div class="row">
+                    @foreach (var tag in Model.Tags)
+                    {
+                        <input type="hidden" name="Tags[@count].Id" value="@tag.Id" >
+                        <input type="hidden" name="Tags[@count].Name" value="@tag.Name" >
+
+                        <div class="col-md-4 col-sm-6 mb-3">
+                            <div class="btn-group-toggle" data-toggle="buttons">
+                                <lable class="btn btn-outline-info btn-block">
+                                    <input type="checkbox" autocomplete="off" name="SelectedTags" value="@tag.Id" />
+                                    @tag.Name
+                                </lable>
+                            </div>
+                        </div>
+                        count++;
+                    }
+                </div>
+            }
+            <a asp-action="Collection" class="btn btn-danger">Cancel</a>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </form>
+    </div>
+</section>
+
+<script src="~/js/editPhoto.js"></script>

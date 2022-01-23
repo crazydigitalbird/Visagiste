@@ -19,19 +19,17 @@
                 foreach (var photo in Model)
                 {
                     count++;
-
                     <div class="col-md-4 ftco-animate">
-                        <a href="@photo.FullName" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url(@photo.FullName);">
+                        <a href="/images/@photo.Name" class="photography-entry img image-popup d-flex justify-content-start align-items-end" style="background-image: url('/images/@photo.Name');">
                             <div class="overlay"></div>
                             <div class="text ml-4 mb-4">
                                 <h3>@($"Photo {count:D2}")</h3>
-                                <span class="tag">@(photo.Tags?.Count > 0 ? string.Join(", ", photo.Tags) : "")</span>
+                                <span class="tag">@(photo.PhotoTags?.Count() > 0 ? string.Join(", ", photo.PhotoTags.Select(pt => pt.Tag.Name).ToArray()) : "")</span>
                             </div>
                         </a>
                     </div> 
                 }
-            }
-            
+            }            
         </div>
     </div>
 </section>

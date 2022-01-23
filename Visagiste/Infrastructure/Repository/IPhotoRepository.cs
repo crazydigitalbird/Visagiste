@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Visagiste.Models;
 
 namespace Visagiste.Infrastructure.Repository
@@ -7,12 +8,12 @@ namespace Visagiste.Infrastructure.Repository
     {
         IEnumerable<Photo> Photos { get; }
 
-        Photo GetPhoto(long id);
+        Photo Get(int id);
 
-        void AddPhoto(Photo photo);
+        Task AddAsync(Photo photo);
 
-        void UpdatePhoto(Photo photo);
+        Task UpdateAsync(Photo photo);
 
-        void DeletePhoto(Photo photo);
+        Task RemoveRangeAsync(IEnumerable<Photo> photos);
     }
 }

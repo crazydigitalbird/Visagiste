@@ -9,7 +9,16 @@
     </h1>
     <nav id="colorlib-main-menu" role="navigation">
         <ul>
-            <li id="index" @*class="colorlib-active"*@><a asp-controller="Home" asp-action="@nameof(Index)">Home</a></li>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <li id="profile"><a asp-controller="Admin" asp-action="Index">Profile</a></li>
+                <li id="editCollection"><a asp-controller="Admin" asp-action="Collection">Edit Collection</a></li>
+                <li id="tag"><a asp-controller="Tag" asp-action="Index">Tags</a></li>
+                <div class="d-flex justify-content-center mb-3">
+                    <div class="w-75" style="background-color: black; height: 0.1em;"></div>
+                </div>
+            }
+            <li id="index"><a asp-controller="Home" asp-action="@nameof(Index)">Home</a></li>
             <li id="collection"><a asp-controller="Home" asp-action="Collection">Collection</a></li>
             <li id="about"><a asp-controller="Home" asp-action="About">About Me</a></li>
             <li id="services"><a asp-controller="Home" asp-action="Services">My Services</a></li>
@@ -19,14 +28,14 @@
     </nav>
 
     @*<div class="colorlib-footer">
-        <h3>Newsletter</h3>
+        <h3>newsletter</h3>
         <div class="d-flex justify-content-center">
-        <form action="#" class="colorlib-subscribe-form">
-        <div class="form-group d-flex">
-        <div class="icon"><span class="icon-paper-plane"></span></div>
-        <input type="text" class="form-control" placeholder="Enter Email Address">
+            <form action="#" class="colorlib-subscribe-form">
+                <div class="form-group d-flex">
+                    <div class="icon"><span class="icon-paper-plane"></span></div>
+                    <input type="text" class="form-control" placeholder="enter email address">
+                </div>
+            </form>
         </div>
-        </form>
-        </div>
-        </div>*@
+    </div>*@
 </aside> <!-- END COLORLIB-ASIDE -->

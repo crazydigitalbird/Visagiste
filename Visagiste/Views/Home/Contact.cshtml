@@ -19,22 +19,29 @@
             <div class="w-100"></div>
             <div class="col-md-3 d-flex">
                 <div class="info bg-light p-4">
-                    <p><span>Address:</span> 198 West 21th Street, Suite 721 New York NY 10016</p>
+                    <p><span>Address:</span></p>
+                    @Model.Address
                 </div>
             </div>
             <div class="col-md-3 d-flex">
                 <div class="info bg-light p-4">
-                    <p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+                    <p><span>Phone:</span></p>
+                    <a href="tel://@Model.Phone">@Model.Phone</a>
                 </div>
             </div>
             <div class="col-md-3 d-flex">
                 <div class="info bg-light p-4">
-                    <p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+                    <p><span>Email:</span></p>
+                    <a href="mailto:@Model.Email">@Model.Email</a>
                 </div>
             </div>
             <div class="col-md-3 d-flex">
                 <div class="info bg-light p-4">
-                    <p><span>Website</span> <a href="#">yoursite.com</a></p>
+                    <p><span>I'm on social networks: </span></p>
+                    <ul class="ftco-social mt-3 text-center">
+                        <li class="ftco-animate"><a href="@Model.VkUrl"><span class="icon-vk"></span></a></li>
+                        <li class="ftco-animate"><a href="@Model.InstagramUrl"><span class="icon-instagram"></span></a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -57,9 +64,7 @@
                         <input type="submit" value="Send Message" class="btn btn-primary py-3 px-5">
                     </div>
                 </form>
-
             </div>
-
             <div class="col-md-6 d-flex">
                 @Html.Raw(@Model.Map)
             </div>

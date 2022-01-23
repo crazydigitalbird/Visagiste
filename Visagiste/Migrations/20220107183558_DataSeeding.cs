@@ -54,62 +54,62 @@ namespace Visagiste.Migrations
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 1, "/images/image_1.jpg", "[\"Model\",\"Visagiste\"]" });
+                values: new object[] { 1, "image_1.jpg", "[\"Model\",\"Visagiste\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 2, "/images/image_2.jpg", "[\"Model\"]" });
+                values: new object[] { 2, "image_2.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 3, "/images/image_3.jpg", "[\"Model\"]" });
+                values: new object[] { 3, "image_3.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 4, "/images/image_4.jpg", "[\"Model\"]" });
+                values: new object[] { 4, "image_4.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 5, "/images/image_5.jpg", "[\"Model\"]" });
+                values: new object[] { 5, "image_5.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 6, "/images/image_6.jpg", "[\"Model\"]" });
+                values: new object[] { 6, "image_6.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 7, "/images/image_7.jpg", "[\"Model\"]" });
+                values: new object[] { 7, "image_7.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 8, "/images/image_8.jpg", "[\"Model\"]" });
+                values: new object[] { 8, "image_8.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 9, "/images/image_9.jpg", "[\"Model\"]" });
+                values: new object[] { 9, "image_9.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 10, "/images/image_10.jpg", "[\"Model\"]" });
+                values: new object[] { 10, "image_10.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 11, "/images/image_11.jpg", "[\"Model\"]" });
+                values: new object[] { 11, "image_11.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Photos",
                 columns: new[] { "Id", "FullName", "Tags" },
-                values: new object[] { 12, "/images/image_12.jpg", "[\"Model\"]" });
+                values: new object[] { 12, "image_12.jpg", "[\"Model\"]" });
 
             migrationBuilder.InsertData(
                 table: "Avatar",

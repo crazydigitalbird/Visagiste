@@ -1,28 +1,36 @@
 ﻿window.onload = function () {
     var pathname = window.location.pathname;
-    var subpathname = pathname.replace('/Home/', '').toLowerCase();
-    switch (subpathname) {
-        case '':
-        case '/':
-        case 'index':
-            underlinemenusection('index');
-            break;
 
-        case 'collection':
-            underlinemenusection('collection');
-            break;
+    if (pathname.includes("Admin")) {
+        var subpathname = pathname.replace('Admin', '').replaceAll('/', '').toLowerCase();
+        switch (subpathname) {
+            case '':
+            case '/':
+            case 'index':
+                underlinemenusection('profile');
+                break;
 
-        case 'about':
-            underlinemenusection('about');
-            break;
+            case 'collection':
+                underlinemenusection('editCollection');
+                break;
 
-        case 'services':
-            underlinemenusection('services');
-            break;
+            default:
+                underlinemenusection(subpathname);
+                break;
+        }
+    }
+    else {
+        var subpathname = pathname.replace('Home', '').replaceAll('/', '').toLowerCase();
+        switch (subpathname) {
+            case '':
+            case '/':
+                underlinemenusection('index');
+                break;
 
-        case 'contact':
-            underlinemenusection('contact');
-            break;
+            default:
+                underlinemenusection(subpathname);
+                break;
+        }
     }
 };
 
